@@ -372,11 +372,26 @@ MonoBehaviour:
     RequiredFingerCount: 0
     RequiredMouseButtons: 0
     RequiredSelectable: {fileID: 0}
-  _camera: {fileID: 0}
+  _camera: {fileID: 963194227}
   relative: 0
   sensitivity: 1
-  damping: -1
+  damping: 1
   remainingScale: {x: 0, y: 0, z: 0}
+--- !u!114 &778284585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778284582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398b5fef048f442ea8a0e2af4ca5758a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leanPinchScale: {fileID: 778284583}
+  _minScale: 0.5
+  _maxScale: 3
 --- !u!1 &782712758
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,8 +29,21 @@ namespace Lean.Touch
 		/// 10 = Quickly change.</summary>
 		public float Damping { set { damping = value; } get { return damping; } } [SerializeField] private float damping = -1.0f;
 
-		[SerializeField]
+		[SerializeField] 
 		private Vector3 remainingScale;
+		
+        private float _minScale;
+        private float _maxScale;
+
+        public float MinScale
+        {
+            set => _minScale = value;
+        }
+
+        public float MaxScale
+        {
+            set => _maxScale = value;
+        }
 
 		/// <summary>If you've set Use to ManuallyAddedFingers, then you can call this method to manually add a finger.</summary>
 		public void AddFinger(LeanFinger finger)
@@ -94,6 +107,8 @@ namespace Lean.Touch
 
 				transform.localScale *= pinchScale;
 
+                ScaleLimitation();
+
 				remainingScale += transform.localPosition - oldScale;
 			}
 
@@ -109,6 +124,15 @@ namespace Lean.Touch
 			// Update remainingDelta with the dampened value
 			remainingScale = newRemainingScale;
 		}
+
+        private void ScaleLimitation()
+        {
+            if (transform.localScale.x < _minScale)
+                transform.localScale = new Vector3(_minScale, _minScale, _minScale);
+            
+            else if (transform.localScale.x > _maxScale)
+                transform.localScale = new Vector3(_maxScale, _maxScale, _maxScale);
+        }
 
 		protected virtual void TranslateUI(float pinchScale, Vector2 pinchScreenCenter)
 		{
