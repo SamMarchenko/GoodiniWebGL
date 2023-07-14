@@ -32,13 +32,9 @@ public class CameraMoving : MonoBehaviour
         else if (Input.touchCount == 1 && Input.touches[0].phase == TouchPhase.Moved)
         {
             if (_previousTouchCount < 2)
-            {
                 MoveCamera(Input.touches[0].position);
-            }
             else
-            {
                 _previousPosition = _camera.ScreenToViewportPoint(Input.GetTouch(0).position);
-            }
         }
         #endregion
         

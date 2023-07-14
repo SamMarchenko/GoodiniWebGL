@@ -202,14 +202,26 @@ namespace Lean.Touch
 				}
 				else
 				{
-					camera.fieldOfView = current;
+					camera.fieldOfView = CheckLimitCameraZoom(current);
 				}
 			}
 			else
 			{
-				Debug.LogError("Failed to find camera. Either tag your cameras MainCamera, or set one in this component.", this);
+				Debug.LogError(
+					"Failed to find camera. Either tag your cameras MainCamera, or set one in this component.", this);
 			}
 		}
+
+		private float CheckLimitCameraZoom(float current)
+        {
+            if (current < 15)
+                return 15;
+
+            if (current > 100)
+                return 100;
+
+            return current;
+        }
 
 		private float TryClamp(float z)
 		{
