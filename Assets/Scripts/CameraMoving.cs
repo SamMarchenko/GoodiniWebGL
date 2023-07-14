@@ -3,18 +3,16 @@ using UnityEngine;
 
 public class CameraMoving : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField] private Transform _target;
+    [SerializeField] private Camera _camera;
     private Vector3 _previousPosition;
-    private Camera _camera;
+    
     private int _previousTouchCount = 0;
     private float _maxCameraYPos;
     private float _minCameraYPos = 0f;
 
-    void Start()
-    {
-        _camera = Camera.main;
+    void Start() => 
         _maxCameraYPos = _camera.transform.position.y;
-    }
 
     void LateUpdate()
     {
@@ -52,7 +50,7 @@ public class CameraMoving : MonoBehaviour
         
         var canCameraMoveY = CheckCameraMoveVerticalLock(direction.y);
         
-        _camera.transform.position = target.position;
+        _camera.transform.position = _target.position;
 
         if (canCameraMoveY) 
             _camera.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
