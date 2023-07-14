@@ -357,49 +357,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &778284582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2d5abcf130d4d4646bf9897ee985355d, type: 3}
-  m_PrefabInstance: {fileID: 264074213}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &778284583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778284582}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c73c1ab94e28d244827af556dca1ed2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Use:
-    Filter: 0
-    IgnoreStartedOverGui: 1
-    RequiredFingerCount: 0
-    RequiredMouseButtons: 0
-    RequiredSelectable: {fileID: 0}
-  _camera: {fileID: 963194227}
-  relative: 0
-  sensitivity: 1
-  damping: 1
-  remainingScale: {x: 0, y: 0, z: 0}
---- !u!114 &778284585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778284582}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 398b5fef048f442ea8a0e2af4ca5758a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _leanPinchScale: {fileID: 778284583}
-  _minScale: 0.5
-  _maxScale: 3
 --- !u!4 &778284589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2d5abcf130d4d4646bf9897ee985355d, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CameraMoving : MonoBehaviour
@@ -6,17 +7,20 @@ public class CameraMoving : MonoBehaviour
     private Vector3 _previousPosition;
     private Camera _camera;
     private int _previousTouchCount = 0;
+    private float _maxCameraYPos;
+    private float _minCameraYPos = 0f;
 
     void Start()
     {
         _camera = Camera.main;
+        _maxCameraYPos = _camera.transform.position.y;
     }
 
     void LateUpdate()
     {
         #region PC
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
             _previousPosition = _camera.ScreenToViewportPoint(Input.mousePosition);
 
         #endregion
@@ -36,21 +40,39 @@ public class CameraMoving : MonoBehaviour
             else
                 _previousPosition = _camera.ScreenToViewportPoint(Input.GetTouch(0).position);
         }
+
         #endregion
-        
+
         _previousTouchCount = Input.touchCount;
     }
 
     private void MoveCamera(Vector3 touchPos)
     {
         Vector3 direction = _previousPosition - _camera.ScreenToViewportPoint(touchPos);
-
+        
+        var canCameraMoveY = CheckCameraMoveVerticalLock(direction.y);
+        
         _camera.transform.position = target.position;
 
-        _camera.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
+        if (canCameraMoveY) 
+            _camera.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
+
         _camera.transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
+
+
         _camera.transform.Translate(new Vector3(0, 0, -10));
 
         _previousPosition = _camera.ScreenToViewportPoint(touchPos);
+    }
+
+    private bool CheckCameraMoveVerticalLock(float directionY)
+    {
+        if (directionY > 0 && Math.Abs(_camera.transform.position.y - _maxCameraYPos) < 0.01f)
+            return false;
+
+        if (directionY < 0 && _camera.transform.position.y <= _minCameraYPos)
+            return false;
+
+        return true;
     }
 }
